@@ -1,0 +1,69 @@
+﻿@model PremLig.PredictionML.Model.DataModels.ModelInput
+
+@{ ViewData["Title"] = "PremierLig Shot Prediction Using ML.NET";
+
+ }
+<body>
+
+
+    <h2>Premier Lig Prediction using ML.NET <b>Predict Home Team Shot</b></h2>
+
+    <img class="img-responsive center-block" id="img_logo" alt="Logo" width="100" height="100" src="@Url.Content("http://pngimg.com/uploads/football_player/football_player_PNG3.png")" />
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Price">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="HomeTeam" class="control-label"></label>
+                    <input asp-for="HomeTeam" class="form-control" />
+                    <span asp-validation-for="HomeTeam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AwayTeam" class="control-label"></label>
+                    <input asp-for="AwayTeam" class="form-control" />
+                    <span asp-validation-for="AwayTeam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FTHomeGol" class="control-label"></label>
+                    <input asp-for="FTHomeGol" type="number" class="form-control" />
+                    <span asp-validation-for="FTHomeGol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FTAwayGol" class="control-label"></label>
+                    <input asp-for="FTAwayGol" type="number" class="form-control" />
+                    <span asp-validation-for="FTAwayGol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AwayShot" class="control-label"></label>
+                    <input asp-for="AwayShot" type="number" class="form-control" />
+                    <span asp-validation-for="AwayShot" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HomeCorner" class="control-label"></label>
+                    <input asp-for="HomeCorner" type="number" class="form-control" />
+                    <span asp-validation-for="HomeCorner" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AwayCorner" class="control-label"></label>
+                    <input asp-for="AwayCorner" type="number" class="form-control" />
+                    <span asp-validation-for="AwayCorner" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Predict" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-offset-2 col-md-4">
+            @if (ViewBag.Price != null)
+            {
+<h3>Result</h3>
+                <h3>Predicted Home Shot:@ViewBag.Price</h3>}
+        </div>
+    </div>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
